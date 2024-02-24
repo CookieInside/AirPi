@@ -70,6 +70,17 @@ def update_position(station: int, position: str)-> None:
     (get_location_id(position), station,))
     connection.commit()
 
+def get_location_name(id: int) -> str:
+    connection = connect("./air.db")
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT name
+        FROM location
+        WHERE id = ?
+    ''',
+    (id,))
+    return cursor.fetchone()[0]
+
 def get_location_id(name: str) -> int:
     connection = connect("./air.db")
     cursor = connection.cursor()

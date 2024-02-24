@@ -21,9 +21,8 @@ def web_func():
             xmax=str(datetime.now()),
             width="100%",
             height="100%",
-            download={'filename': 'tim'},
-            points=False
-
+            download={'filename': data.get_location_name(location)},
+            points=False,
         )
         all_loc = data.get_all_locations()
         print(all_loc)
