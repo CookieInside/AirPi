@@ -1,0 +1,43 @@
+.timeSelector {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.locationSelector {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.allChart {
+    width: 70%;
+    height: 60%;
+    position: relative;
+    border: 1px solid black;
+}
+
+.settingsBox {
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    background-color: green;
+    top: 0;
+    left: 0;
+}
+
+.chartBox {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

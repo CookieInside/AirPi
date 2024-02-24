@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>AirPi</title>
+</head>
+<body>
+    <div class="allChart">
+        <div class="settingsBox">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle timeSelector" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Location
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for loc in all_locations %}
+                            <a class="dropdown-item" href="#" onclick="getToNewLocation('{{ loc[0] }}')">{{ loc[1] }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle locationSelector" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Time
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(1)">1h</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(4)">4h</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(8)">8h</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(12)">12h</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(24)">1d</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(24*7)">1w</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(24*31)">1m</a>
+                        <a class="dropdown-item" href="#" onclick="getToNewTime(24*356)">1y</a>
+                    </div>
+            </div>            
+        </div>
+        <div class="chartBox">
+        {{ chart }}
+        </div>
+    </div>    
+</body>
+<script>
+    function getToNewTime(newHours){
+        window.open(window.location.origin + "/station&location={{ location }}&hours=" + newHours, "_self");
+    }
+
+    function getToNewLocation(newLocation){
+        window.open(window.location.origin + "/station&location=" + newLocation + "&hours={{ hours }}", "_self");
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('chartkick.static', filename='Chart.bundle.js') }}"></script>
+<script src="{{ url_for('chartkick.static', filename='chartkick.js') }}"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</html>
